@@ -1,16 +1,20 @@
 
-
-    <%= link_to "新規登録", new_user_registration_path %>
-    <%= link_to "ログイン", new_user_session_path %>
+    <% unless user_signed_in? %>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% else %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
+    <% end %>
 
     <div class="container">  
+        <%= link_to "お気に入り", pokemons_favorite_path %>
         <h1>ポケモン検索</h1>
         <%= form_with url: "#", method: :get, local: true do |f| %>
           <%= f.text_field :search, autofocus: true , id: "number"%>
           <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
         <% @pokemon_all.each do |pokemon_all| %>
-            <%= link_to pokemon_path(pokemon_all.number) do %>
+            <%= link_to pokemon_path(pokemon_all.id) do %>
               <% unless pokemon_all.image_url == nil || pokemon_all.image_url.blank? %>
                 <%= image_tag(pokemon_all.image_url, size: "170") %>
               <% else %>

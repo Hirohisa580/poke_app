@@ -6,7 +6,13 @@ def index
 end
 
 def show
-  @pokemon = Pokemon.find_by(number: params[:id])
+  @pokemon = Pokemon.find(params[:id])
+end
+
+def favorite
+  favorite = Favorite.where(user_id: current_user.id)
+  favorite_pokemon_id = favorite.pluck(:pokemon_id)
+  @favorite_pokemon = Pokemon.where(id: favorite_pokemon_id)
 end
 
 def search
