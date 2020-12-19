@@ -1,0 +1,15 @@
+  
+  .all__main {
+    /* background-image: url(https://den-deca.net/wp-content/uploads/2020/02/F5hzigA-480x245.jpg);
+    background-size: cover; */
+  }
+  
+  .container {
+    /* background-color: orange; */
+    text-align: center;
+  }
+
+  .pokemon__picture_book {
+    display: inline-block;
+    margin-top: 50px;
+  }
