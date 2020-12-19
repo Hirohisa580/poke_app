@@ -5,6 +5,9 @@ def index
   @pokemon_all = Pokemon.all
 end
 
+def show
+end
+
 def search
   @pokemon_all = Pokemon.all
   pokemon_last = Pokemon.last
