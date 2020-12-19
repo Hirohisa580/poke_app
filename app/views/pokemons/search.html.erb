@@ -1,7 +1,7 @@
 
 <div class="all__main">  
   <div class="pokemon__search_get">
-    <h1><%= link_to "ポケモン検索", pokemons_search_path%></h1>
+    <h1><%= link_to "APIポケモン検索", pokemons_search_path%></h1>
     <%= form_with url: pokemons_get_path, method: :get, local: true do |f| %>
       <%= f.text_field :search, autofocus: true , id: "number"%>
       <%= f.submit "検索", id: "pokemonGet" %>

@@ -1,4 +1,5 @@
 class PokemonsController < ApplicationController
+  before_action :authenticate_user!, only:[:search, :get]
 
 def index
   @pokemon_all = Pokemon.all
@@ -8,6 +9,9 @@ def search
   @pokemon_all = Pokemon.all
   pokemon_last = Pokemon.last
   @pokemon_last_id = pokemon_last.number
+  if current_user.id != 1
+    redirect_to root_path
+  end
 end
 
 def get
