@@ -15,6 +15,15 @@ def favorite
   @favorite_pokemon = Pokemon.where(id: favorite_pokemon_id)
 end
 
+def name
+  pokemon_all_name = Pokemon.pluck(:name)
+  if pokemon_all_name.include?(params[:name])
+    @pokemon = Pokemon.find_by(name: params[:name])
+  else
+    redirect_to root_path
+  end
+end
+
 def search
   @pokemon_all = Pokemon.all
   pokemon_last = Pokemon.last
