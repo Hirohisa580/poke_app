@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: "pokemons#search"
+  resources :pokemons, only: [:create] 
+  get "pokemons/search", to: "pokemons#search"
+  get "pokemons/get",    to: "pokemons#get"  
 end
