@@ -1,8 +1,9 @@
 
-    <h1>showページ</h1>
     <div class="pokemon__show">
-      <%= "#{@pokemon.number}. "%>
-      <%= @pokemon.name %>
+      <div class="show__name">
+        <%= "#{@pokemon.number}. "%>
+        <%= @pokemon.name %>
+      </div>
       <div id="showImage">
         <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
           <%= image_tag(@pokemon.image_url, size: "500") %>
