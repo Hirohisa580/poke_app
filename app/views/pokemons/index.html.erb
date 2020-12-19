@@ -7,7 +7,7 @@
         <h1>ポケモン検索</h1>
         <%= form_with url: "#", method: :get, local: true do |f| %>
           <%= f.text_field :search, autofocus: true , id: "number"%>
-          <%= f.submit "検索", id: "pokemonGet" %>
+          <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
         <% @pokemon_all.each do |pokemon_all| %>
             <%= link_to pokemon_path(pokemon_all.number) do %>

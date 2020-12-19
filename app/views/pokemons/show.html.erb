@@ -1,2 +1,15 @@
 
-<h1>showページ</h1>
+    <h1>showページ</h1>
+    <div class="pokemon__show">
+      <%= "#{@pokemon.number}. "%>
+      <%= @pokemon.name %>
+      <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
+        <%= image_tag(@pokemon.image_url, size: "250") %>
+      <% else %>
+        <%= image_tag("体育座りの男.png", size: "250") %>
+      <% end %>
+      <P><%=" タイプ１： #{@pokemon.type_one} "%></p>
+        <% if @pokemon.type_two != nil%>
+          <p><%=" タイプ２： #{@pokemon.type_two} "%></p>
+        <% end %>
+    </div>

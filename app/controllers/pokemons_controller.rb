@@ -6,6 +6,7 @@ def index
 end
 
 def show
+  @pokemon = Pokemon.find_by(number: params[:id])
 end
 
 def search
