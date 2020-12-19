@@ -8,18 +8,20 @@
 
     <div class="container">  
 
-        <%= link_to "お気に入り", pokemons_favorite_path %>
+        <%= link_to "お気に入り", favorite_pokemons_path %>
         <h1>なまえで検索</h1>
-        <%= form_with url: pokemons_name_path, method: :get, local: true do |f| %>
+        <%= form_with url: name_pokemons_path, method: :get, local: true do |f| %>
           <%= f.text_field :name, autofocus: true , id: "number", placeholder: "例）モクロー"%>
           <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
 
-      <%= form_with url: pokemons_type_path, method: :get, local: true do |f| %>
+      <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
         <p>タイプで検索<br /></p>
         <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
         <%= f.submit "検索" %>
       <% end %>
+
+      
 
         <% @pokemon_all.each do |pokemon_all| %>
             <%= link_to pokemon_path(pokemon_all.id) do %>

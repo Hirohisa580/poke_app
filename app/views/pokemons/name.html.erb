@@ -7,9 +7,9 @@
     <% end %>
 
     <div class="container">  
-        <%= link_to "お気に入り", pokemons_favorite_path %>
+        <%= link_to "お気に入り", favorite_pokemons_path %>
         <h1>ポケモン検索</h1>
-        <%= form_with url: pokemons_name_path, method: :get, local: true do |f| %>
+        <%= form_with url: name_pokemons_path, method: :get, local: true do |f| %>
           <%= f.text_field :search, autofocus: true , id: "number", placeholder: "例）モクロー"%>
           <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
