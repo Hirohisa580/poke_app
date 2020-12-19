@@ -1,0 +1,18 @@
+
+    <div class="pokemon__show">
+      <div class="show__name">
+        <%= "#{@pokemon.number}. "%>
+        <%= @pokemon.name %>
+      </div>
+      <div id="showImage">
+        <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
+          <%= image_tag(@pokemon.image_url, size: "500") %>
+        <% else %>
+          <%= image_tag("体育座りの男.png", size: "500") %>
+        <% end %>
+      </div>
+      <P id="type_one"><%="タイプ1: #{@pokemon.type_one}"%></p>
+        <% if @pokemon.type_two != nil%>
+          <p id="type_two"><%="タイプ2: #{@pokemon.type_two}"%></p>
+        <% end %>
+    </div>

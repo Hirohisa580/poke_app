@@ -5,6 +5,10 @@ def index
   @pokemon_all = Pokemon.all
 end
 
+def show
+  @pokemon = Pokemon.find_by(number: params[:id])
+end
+
 def search
   @pokemon_all = Pokemon.all
   pokemon_last = Pokemon.last

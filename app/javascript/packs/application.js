@@ -9,6 +9,10 @@ require("@rails/activestorage").start()
 require("channels")
 require("./auto_ball")
 require("./auto_search")
+require("./typeja")
+require("./typeja2")
+require("./show_image")
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
