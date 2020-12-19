@@ -3,6 +3,10 @@
     /* background-image: url(https://den-deca.net/wp-content/uploads/2020/02/F5hzigA-480x245.jpg);
     background-size: cover; */
   }
+
+  .pokemon__search_get {
+    text-align: center;
+  }
   
   .container {
     /* background-color: orange; */
