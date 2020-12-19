@@ -37,7 +37,7 @@ function typeJa2() {
   } else if (typeTwo.textContent == "タイプ2: fairy") {
     typeTwo.textContent = "タイプ2: フェアリー"
   } else {
-    typeTwo.textContent = "タイプ2: なし"
+    typeTwo.textContent = ""
   }
 }
 window.addEventListener("load", typeJa2)
