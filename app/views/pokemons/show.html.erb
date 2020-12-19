@@ -28,5 +28,6 @@
       <p><%= "残り投票数は #{10 - current_user.favorites.count} 回です" %></p>
 
       <%= link_to "トップページに戻る", root_path %>
+      <p><%= link_to "お気に入り", pokemons_favorite_path %></p>
 
     </div>
