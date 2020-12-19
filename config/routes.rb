@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "pokemons/get",        to: "pokemons#get"  
   get "pokemons/favorite",   to: "pokemons#favorite"
   get "pokemons/name",       to: "pokemons#name"
+  get "pokemons/type",       to: "pokemons#type"
   resources :pokemons, only: [:create, :index, :show] do
     resources :favorites, only: [:create, :destroy]
   end

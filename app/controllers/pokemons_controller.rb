@@ -24,6 +24,11 @@ def name
   end
 end
 
+def type
+  ja_type
+end
+
+
 def search
   @pokemon_all = Pokemon.all
   pokemon_last = Pokemon.last
@@ -58,6 +63,50 @@ private
 
 def pokemon_params
   params.permit(:number, :name, :type_one, :type_two, :image_url)
+end
+
+def ja_type
+
+  if params[:type_id] == "2"
+    @pokemons = Pokemon.where(type_one: "normal") + Pokemon.where(type_two: "normal")
+  elsif params[:type_id] == "3"
+    @pokemons = Pokemon.where(type_one: "fire") + Pokemon.where(type_two: "fire")
+  elsif params[:type_id] == "4"
+    @pokemons = Pokemon.where(type_one: "water") + Pokemon.where(type_two: "water")
+  elsif params[:type_id] == "5"
+    @pokemons = Pokemon.where(type_one: "grass") + Pokemon.where(type_two: "grass")
+  elsif params[:type_id] == "6"
+    @pokemons = Pokemon.where(type_one: "electric") + Pokemon.where(type_two: "electric")
+  elsif params[:type_id] == "7"
+    @pokemons = Pokemon.where(type_one: "ice") + Pokemon.where(type_two: "ice")
+  elsif params[:type_id] == "8"
+    @pokemons = Pokemon.where(type_one: "fighting") + Pokemon.where(type_two: "fighting")
+  elsif params[:type_id] == "9"
+    @pokemons = Pokemon.where(type_one: "poison") + Pokemon.where(type_two: "poison")
+  elsif params[:type_id] == "10"
+    @pokemons = Pokemon.where(type_one: "ground") + Pokemon.where(type_two: "ground")
+  elsif params[:type_id] == "11"
+    @pokemons = Pokemon.where(type_one: "flying") + Pokemon.where(type_two: "flying")
+  elsif params[:type_id] == "12"
+    @pokemons = Pokemon.where(type_one: "psychic") + Pokemon.where(type_two: "psychic")
+  elsif params[:type_id] == "13"
+    @pokemons = Pokemon.where(type_one: "bug") + Pokemon.where(type_two: "bug")
+  elsif params[:type_id] == "14"
+    @pokemons = Pokemon.where(type_one: "rock") + Pokemon.where(type_two: "rock")
+  elsif params[:type_id] == "15"
+    @pokemons = Pokemon.where(type_one: "ghost") + Pokemon.where(type_two: "ghost")
+  elsif params[:type_id] == "16"
+    @pokemons = Pokemon.where(type_one: "dragon") + Pokemon.where(type_two: "dragon")
+  elsif params[:type_id] == "17"
+    @pokemons = Pokemon.where(type_one: "dark") + Pokemon.where(type_two: "dark")
+  elsif params[:type_id] == "18"
+    @pokemons = Pokemon.where(type_one: "steel") + Pokemon.where(type_two: "steel")
+  elsif params[:type_id] == "19"
+    @pokemons = Pokemon.where(type_one: "fairy") + Pokemon.where(type_two: "fairy")
+  else
+    redirect_to root_path
+  end
+
 end
 
 
