@@ -24,10 +24,15 @@
           <%= link_to "投票する", pokemon_favorites_path(@pokemon), method: :post %>
         <% end %>
         <%= @pokemon.favorites.count %>
+      <% else %>
+        <% if current_user.already_favorited?(@pokemon) %>
+          <%= link_to "投票を取り消す", pokemon_favorite_path(@pokemon), method: :delete %>
+        <% end %>
+        <%= @pokemon.favorites.count %>
       <% end %>
       <p><%= "残り投票数は #{10 - current_user.favorites.count} 回です" %></p>
 
       <%= link_to "トップページに戻る", root_path %>
-      <p><%= link_to "お気に入り", pokemons_favorite_path %></p>
+      <p><%= link_to "お気に入り", favorite_pokemons_path %></p>
 
     </div>

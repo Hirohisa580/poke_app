@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pokemons#index"
-  get "pokemons/search",     to: "pokemons#search"
-  get "pokemons/get",        to: "pokemons#get"  
-  get "pokemons/favorite",   to: "pokemons#favorite"
-  get "pokemons/name",       to: "pokemons#name"
-  get "pokemons/type",       to: "pokemons#type"
   resources :pokemons, only: [:create, :index, :show] do
+    collection do
+      get 'search'
+      get 'get'
+      get 'favorite'
+      get 'name'
+      get 'type'
+    end
     resources :favorites, only: [:create, :destroy]
   end
 end
