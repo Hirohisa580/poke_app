@@ -315,9 +315,9 @@ def sort_type
 
   else
     if params[:keyword] == "up"
-      @pokemons = Pokemon.order(id: "DESC")
-    elsif params[:keyword] == "down"
       @pokemons = Pokemon.order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.order(id: "DESC")
     elsif params[:keyword] == "random"
       @pokemons = Pokemon.order("RAND()").all
     else
