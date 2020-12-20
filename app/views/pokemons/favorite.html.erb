@@ -1,5 +1,5 @@
    
-   
+    <%= link_to "トップページに戻る", root_path %> 
     <div class="container">  
         <% @favorite_pokemon.each do |pokemon| %>
             <%= link_to pokemon_path(pokemon.id) do %>
@@ -10,5 +10,5 @@
               <% end %>
             <% end %>
         <% end %>
+        <p><%= link_to '戻る', 'javascript:history.back()'%></p>
     </div>
-    <%= link_to "トップページに戻る", root_path %>
