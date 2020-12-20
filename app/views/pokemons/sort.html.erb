@@ -15,14 +15,15 @@
           <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
 
-        <%= form_with url: "#", method: :get, local: true do |f| %>
+        <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
           <div>タイプで検索<br /></div>
           <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
           <%= f.submit "検索" %>
         <% end %>
 
-        <%=form_with model: @pokemon, url: rank_pokemons_path, method: :get, local: true do |f|%>
+        <%=form_with model: @pokemon, url: sort_pokemons_path, method: :get, local: true do |f|%>
           <div>並べ替え<br /></div>
+          <input name="type_id" type="hidden" value=<%= params[:type_id] %>>  
           <%=f.select :keyword, [
                                 ["--", "top"],
                                 ["昇順", "up"],
