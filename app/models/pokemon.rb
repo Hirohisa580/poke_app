@@ -9,4 +9,5 @@ class Pokemon < ApplicationRecord
   #     return find(Favorite.group(:pokemon_id).order(Arel.sql('count(pokemon_id) asc')).pluck(:pokemon_id))
   #   end
   # end
+
 end

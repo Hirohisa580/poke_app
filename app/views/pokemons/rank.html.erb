@@ -1,0 +1,16 @@
+
+  <p><%= link_to "トップページに戻る", root_path %></p>   
+  <div class="container">  
+
+      <h1>ランキング</h1>
+      <% @favorite_pokemons.each do |pokemons| %>
+        <%= link_to pokemon_path(pokemons.id) do %>
+          <% unless pokemons.image_url == nil || pokemons.image_url.blank? %>
+            <%= image_tag(pokemons.image_url, size: "170") %>
+          <% else %>
+            <%= image_tag("体育座りの男.png", size: "170") %>
+          <% end %>
+        <% end %>
+        <p><%= pokemons.favorites.count %></p>
+      <% end %>
+  </div>

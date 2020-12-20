@@ -5,6 +5,7 @@
     <% else %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
     <% end %>
+    <p><%= link_to "トップページに戻る", root_path %></p>
 
     <div class="container">  
 
@@ -30,6 +31,13 @@
                                 ["ランダム", "random"]]%>
           <%=f.submit "並べ替え"%>
         <% end %>
+        <div>
+          <% if params[:type_id] != nil %>
+            <%= link_to "ランキング", rank_pokemon_path(params[:type_id]) %>
+          <% else %>
+            <%= link_to "ランキング", rank_pokemon_path("1") %>         
+          <% end %>
+        </div>
 
         <p><%="全 #{@pokemons.count} 匹"%></p>
         <% @pokemons.each do |pokemons| %>

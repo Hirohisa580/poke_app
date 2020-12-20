@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       get 'type'
       get 'sort'
     end
+    member do
+      get 'rank'
+    end
 
     resources :favorites, only: [:create, :destroy]
   end
