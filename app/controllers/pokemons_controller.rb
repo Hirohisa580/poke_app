@@ -133,8 +133,6 @@ class PokemonsController < ApplicationController
 
   def sort_type
 
-    # selection = params[:keyword]
-    # @pokemons = Pokemon.sort(selection)
     if params[:type_id] == "2"
       if params[:keyword] == "up"
         @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "normal","normal").order(id: "ASC")
