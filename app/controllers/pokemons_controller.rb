@@ -33,15 +33,20 @@ class PokemonsController < ApplicationController
   end
 
   def rank
+    favorites = Favorite.pluck(:pokemon_id)
+    favorites_count = favorites.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
+    count_sort = favorites_count.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }.to_h
+    counts = count_sort.keys
     if params[:type_id] == "1" || params[:id] == "1"
-      favorites = Favorite.pluck(:pokemon_id)
-      favorites_count = favorites.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
-      count_sort = favorites_count.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }.to_h
-      counts = count_sort.keys
       @favorite_pokemons = Pokemon.where(id: counts).order(['field(id, ?)', counts])    #配列の順番を保ったまま、モデルから情報を取得
     else
       ja_type
-      binding.pry
+
+      pokemon_counts = @pokemons.pluck(:id)
+      a = counts & pokemon_counts
+      o = Favorite.where(pokemon_id: a)
+      s = o.pluck(:pokemon_id)    
+      @favorite_pokemons = Pokemon.where(id: s).order(['field(id, ?)', s])
     end
 
   end
