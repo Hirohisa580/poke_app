@@ -24,7 +24,9 @@
 
         <%=form_with model: @pokemon, url: sort_pokemons_path, method: :get, local: true do |f|%>
           <div>並べ替え<br /></div>
-          <input name="type_id" type="hidden" value=<%= params[:type_id] %>>  
+          <% if params[:type_id] != nil %>
+            <input name="type_id" type="hidden" value=<%= params[:type_id] %>>  
+          <% end %>
           <%=f.select :keyword, [
                                 ["昇順", "up"],
                                 ["降順", "down"],
