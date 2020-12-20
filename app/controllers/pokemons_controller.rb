@@ -2,7 +2,7 @@ class PokemonsController < ApplicationController
   before_action :authenticate_user!, only:[:search, :get]
 
 def index
-  @pokemon_all = Pokemon.all
+  @pokemons = Pokemon.all
 end
 
 def show
@@ -28,6 +28,11 @@ def type
   ja_type
 end
 
+def sort
+  # selection = params[:keyword]
+  # @pokemons = Pokemon.sort(selection)
+  sort_type
+end
 
 def search
   @pokemon_all = Pokemon.all
@@ -109,5 +114,216 @@ def ja_type
 
 end
 
+def sort_type
+  if params[:type_id] == "2"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "normal","normal").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "normal","normal").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "normal","normal").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "3"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fire","fire").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fire","fire").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fire","fire").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "4"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "water","water").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "water","water").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "water","water").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "5"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "grass","grass").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "grass","grass").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "grass","grass").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "6"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "electric","electric").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "electric","electric").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "electric","electric").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "7"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ice","ice").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ice","ice").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ice","ice").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "8"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fighting","fighting").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fighting","fighting").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fighting","fighting").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "9"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "poison","poison").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "poison","poison").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "poison","poison").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+  
+  elsif params[:type_id] == "10"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ground","ground").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ground","ground").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ground","ground").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+  
+  elsif params[:type_id] == "11"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "flying","flying").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "flying","flying").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "flying","flying").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "12"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "psychic","psychic").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "psychic","psychic").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "psychic","psychic").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "13"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "bug","bug").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "bug","bug").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "bug","bug").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "14"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "rock","rock").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "rock","rock").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "rock","rock").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "15"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ghost","ghost").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ghost","ghost").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "ghost","ghost").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "16"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "dragon","dragon").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "dragon","dragon").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "dragon","dragon").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "17"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "dark","dark").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "dark","dark").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "dark","dark").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "18"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "steel","steel").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "steel","steel").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "steel","steel").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  elsif params[:type_id] == "19"
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fairy","fairy").order(id: "ASC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fairy","fairy").order(id: "DESC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.where("(type_one = ?) OR (type_two = ?)", "fairy","fairy").order("RAND()").all
+    else
+      redirect_to root_path
+    end
+
+  else
+    if params[:keyword] == "up"
+      @pokemons = Pokemon.order(id: "DESC")
+    elsif params[:keyword] == "down"
+      @pokemons = Pokemon.order(id: "ASC")
+    elsif params[:keyword] == "random"
+      @pokemons = Pokemon.order("RAND()").all
+    else
+      redirect_to root_path
+    end
+  end
+end
 
 end

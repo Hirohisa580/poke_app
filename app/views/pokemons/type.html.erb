@@ -1,4 +1,6 @@
 
+
+
     <% unless user_signed_in? %>
       <%= link_to "新規登録", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>
@@ -15,11 +17,25 @@
           <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
 
-      <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
-        <p>タイプで検索<br /></p>
-        <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
-        <%= f.submit "検索" %>
-      <% end %>
+        <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
+          <div>タイプで検索<br /></div>
+          <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
+          <%= f.submit "検索" %>
+        <% end %>
+
+        <%=form_with model: @pokemon, url: sort_pokemons_path, method: :get, local: true do |f|%>
+          <div>並べ替え<br /></div>
+          <input name="type_id" type="hidden" value=<%= params[:type_id] %>>   
+          <%=f.select :keyword, [
+                                ["--", "top"],
+                                ["昇順", "up"],
+                                ["降順", "down"],
+                                ["ランダム", "random"],
+                                ["人気が高い順", "likes"],
+                                ["人気が低い順", "dislikes"]]%>
+          <%=f.submit "並べ替え"%>
+        <% end %>
+
         <p><%="全 #{@pokemons.count} 匹"%></p>
         <% @pokemons.each do |pokemons| %>
             <%= link_to pokemon_path(pokemons.id) do %>

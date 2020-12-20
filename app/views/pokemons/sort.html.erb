@@ -23,6 +23,7 @@
 
         <%=form_with model: @pokemon, url: sort_pokemons_path, method: :get, local: true do |f|%>
           <div>並べ替え<br /></div>
+          <input name="type_id" type="hidden" value=<%= params[:type_id] %>>  
           <%=f.select :keyword, [
                                 ["--", "top"],
                                 ["昇順", "up"],
@@ -30,7 +31,7 @@
                                 ["ランダム", "random"],
                                 ["人気が高い順", "likes"],
                                 ["人気が低い順", "dislikes"]]%>
-          <%=f.submit "並べ替え"%>
+          <%=f.submit "検索"%>
         <% end %>
 
         <% @pokemons.each do |pokemons| %>

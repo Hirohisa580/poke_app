@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       get 'favorite'
       get 'name'
       get 'type'
+      get 'sort'
     end
+
     resources :favorites, only: [:create, :destroy]
   end
 end
