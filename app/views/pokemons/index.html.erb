@@ -24,7 +24,6 @@
         <%=form_with model: @pokemon, url: sort_pokemons_path, method: :get, local: true do |f|%>
           <div>並べ替え<br /></div>
           <%=f.select :keyword, [
-                                ["--", "top"],
                                 ["昇順", "up"],
                                 ["降順", "down"],
                                 ["ランダム", "random"],
