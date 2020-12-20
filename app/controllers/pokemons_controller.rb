@@ -2,7 +2,7 @@ class PokemonsController < ApplicationController
   before_action :authenticate_user!, only:[:search, :get]
 
 def index
-  @pokemon_all = Pokemon.all
+  @pokemons = Pokemon.all
 end
 
 def show
@@ -26,6 +26,32 @@ end
 
 def type
   ja_type
+end
+
+def rank
+  # selection = params[:keyword]
+  # @pokemons = Pokemon.sort(selection)
+  if params[:keyword] == "up"
+    @pokemons = Pokemon.order(id: "DESC")
+  elsif params[:keyword] == "down"
+    @pokemons = Pokemon.order(id: "ASC")
+  elsif params[:keyword] == "random"
+    @pokemons = Pokemon.order("RAND()").all
+  else
+    redirect_to root_path
+  end
+end
+
+def typerank
+  if params[:keyword] == "up"
+    @pokemons = Pokemon.order(id: "DESC")
+  elsif params[:keyword] == "down"
+    @pokemons = Pokemon.order(id: "ASC")
+  elsif params[:keyword] == "random"
+    @pokemons = Pokemon.order("RAND()").all
+  else
+    redirect_to root_path
+  end
 end
 
 

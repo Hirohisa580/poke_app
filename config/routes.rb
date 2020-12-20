@@ -7,8 +7,13 @@ Rails.application.routes.draw do
       get 'get'
       get 'favorite'
       get 'name'
+      get 'rank'
+    end
+    member do
+      get 'typerank'
       get 'type'
     end
+
     resources :favorites, only: [:create, :destroy]
   end
 end

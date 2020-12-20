@@ -15,18 +15,28 @@
           <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
 
-      <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
-        <p>タイプで検索<br /></p>
-        <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
-        <%= f.submit "検索" %>
-      <% end %>
+        <%= form_with url: "#", method: :get, local: true do |f| %>
+          <div>タイプで検索<br /></div>
+          <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
+          <%= f.submit "検索" %>
+        <% end %>
 
-      
+        <%=form_with model: @pokemon, url: rank_pokemons_path, method: :get, local: true do |f|%>
+          <div>並べ替え<br /></div>
+          <%=f.select :keyword, [
+                                ["--", "top"],
+                                ["昇順", "up"],
+                                ["降順", "down"],
+                                ["ランダム", "random"],
+                                ["人気が高い順", "likes"],
+                                ["人気が低い順", "dislikes"]]%>
+          <%=f.submit "並べ替え"%>
+        <% end %>
 
-        <% @pokemon_all.each do |pokemon_all| %>
-            <%= link_to pokemon_path(pokemon_all.id) do %>
-              <% unless pokemon_all.image_url == nil || pokemon_all.image_url.blank? %>
-                <%= image_tag(pokemon_all.image_url, size: "170") %>
+        <% @pokemons.each do |pokemons| %>
+            <%= link_to pokemon_path(pokemons.id) do %>
+              <% unless pokemons.image_url == nil || pokemons.image_url.blank? %>
+                <%= image_tag(pokemons.image_url, size: "170") %>
               <% else %>
                 <%= image_tag("体育座りの男.png", size: "170") %>
               <% end %>

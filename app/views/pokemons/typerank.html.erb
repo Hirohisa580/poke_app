@@ -21,7 +21,7 @@
           <%= f.submit "検索" %>
         <% end %>
 
-        <%=form_with model: @pokemon, url: typerank_pokemon_path(params[:type_id]), method: :get, local: true do |f|%>
+        <%=form_with model: @pokemon, url: typerank_pokemon_path(1), method: :get, local: true do |f|%>
           <div>並べ替え<br /></div>
           <%=f.select :keyword, [
                                 ["--", "top"],

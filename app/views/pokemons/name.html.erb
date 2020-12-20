@@ -7,18 +7,26 @@
     <% end %>
 
     <div class="container">  
+
         <%= link_to "お気に入り", favorite_pokemons_path %>
-        <h1>ポケモン検索</h1>
+        <h1>なまえで検索</h1>
         <%= form_with url: name_pokemons_path, method: :get, local: true do |f| %>
           <%= f.text_field :search, autofocus: true , id: "number", placeholder: "例）モクロー"%>
           <%= f.submit "検索", class: "pokemon__search" %>
         <% end %>
-          <%= link_to pokemon_path(@pokemon.id) do %>
-            <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
-              <%= image_tag(@pokemon.image_url, size: "300") %>
-            <% else %>
-              <%= image_tag("体育座りの男.png", size: "300") %>
-            <% end %>
+
+        <%= form_with url: "#", method: :get, local: true do |f| %>
+          <div>タイプで検索<br /></div>
+          <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
+          <%= f.submit "検索" %>
+        <% end %>
+
+        <%= link_to pokemon_path(@pokemon.id) do %>
+          <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
+            <%= image_tag(@pokemon.image_url, size: "300") %>
+          <% else %>
+            <%= image_tag("体育座りの男.png", size: "300") %>
           <% end %>
+        <% end %>
      </div>
      <%= link_to "トップページに戻る", root_path %>
