@@ -3,6 +3,7 @@
   <div class="container">  
 
       <h1>ランキング</h1>
+      <p>（同票はナンバー順）</p>
       <% if @favorite_pokemons != [] %>
         <% @favorite_pokemons.each do |pokemons| %>
           <%= link_to pokemon_path(pokemons.id) do %>
