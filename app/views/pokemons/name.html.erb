@@ -23,9 +23,9 @@
 
         <%= link_to pokemon_path(@pokemon.id) do %>
           <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
-            <%= image_tag(@pokemon.image_url, size: "170") %>
+            <%= image_tag(@pokemon.image_url, size: "200") %>
           <% else %>
-            <%= image_tag("体育座りの男.png", size: "170") %>
+            <%= image_tag("体育座りの男.png", size: "200") %>
           <% end %>
         <% end %>
         <p><%= link_to '戻る', 'javascript:history.back()'%></p>
