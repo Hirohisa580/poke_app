@@ -1,5 +1,5 @@
 class PokemonsController < ApplicationController
-  before_action :authenticate_user!, only:[:search, :get]
+  before_action :authenticate_user!, only:[:search, :get, :show]
 
   def index
     @pokemons = Pokemon.all
@@ -41,7 +41,6 @@ class PokemonsController < ApplicationController
       @favorite_pokemons = Pokemon.where(id: counts).order(['field(id, ?)', counts])    #配列の順番を保ったまま、モデルから情報を取得
     else
       ja_type
-
       pokemon_counts = @pokemons.pluck(:id)
       a = counts & pokemon_counts
       o = Favorite.where(pokemon_id: a)
@@ -52,11 +51,14 @@ class PokemonsController < ApplicationController
   end
 
   def search
-    @pokemon_all = Pokemon.all
-    pokemon_last = Pokemon.last
-    @pokemon_last_id = pokemon_last.number
     if current_user.id != 1
       redirect_to root_path
+    else
+      @pokemon_all = Pokemon.all
+      pokemon_last = Pokemon.last
+      if pokemon_last != nil
+        @pokemon_last_id = pokemon_last.number
+      end
     end
   end
 
@@ -78,7 +80,7 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.save
-    redirect_to root_path
+    redirect_to search_pokemons_path
   end
 
   private

@@ -3,7 +3,7 @@
   <div class="container">  
 
       <h1>ランキング</h1>
-      <% if @faborite_pokemons != nil %>
+      <% if @favorite_pokemons != nil %>
         <% @favorite_pokemons.each do |pokemons| %>
           <%= link_to pokemon_path(pokemons.id) do %>
             <% unless pokemons.image_url == nil || pokemons.image_url.blank? %>
