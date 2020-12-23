@@ -1,28 +1,31 @@
 
-<div class="all__main">  
-  <div class="pokemon__search_get">
-    <h1><%= link_to "APIポケモン検索", search_pokemons_path%></h1>
-    <%= form_with url: get_pokemons_path, method: :get, local: true do |f| %>
-      <% if @pokemon_last_id != nil %>
-        <%= f.text_field :search, autofocus: true , id: "number", value: "#{@pokemon_last_id + 1}" %>
-      <% else %>
-        <%= f.text_field :search, autofocus: true , id: "number", value: "1" %>
-      <% end %>
-      <%= f.submit "検索", id: "pokemonGet" %>
-    <% end %>
+  <div class="top-page">
+      <%=render "shared/header"%>
   </div>
-
-  <div class="container">
-    <% @pokemon_all.each do |pokemon_all| %>
-    <div class="pokemon__picture_book">
-      <%= "#{pokemon_all.number}. "%>
-      <%= pokemon_all.name %>
-      <% unless pokemon_all.image_url == nil || pokemon_all.image_url.blank? %>
-        <%= image_tag(pokemon_all.image_url, size: "170") %>
-      <% else %>
-        <%= image_tag("体育座りの男.png", size: "170") %>
+  <div class="all__main">  
+    <div class="pokemon__search_get">
+      <h1><%= link_to "APIポケモン検索", search_pokemons_path%></h1>
+      <%= form_with url: get_pokemons_path, method: :get, local: true do |f| %>
+        <% if @pokemon_last_id != nil %>
+          <%= f.text_field :search, autofocus: true , id: "number", value: "#{@pokemon_last_id + 1}" %>
+        <% else %>
+          <%= f.text_field :search, autofocus: true , id: "number", value: "1" %>
+        <% end %>
+        <%= f.submit "検索", id: "pokemonGet" %>
       <% end %>
     </div>
-    <% end %>
-  </div>
-<div>
+
+    <div class="container">
+      <% @pokemon_all.each do |pokemon_all| %>
+      <div class="pokemon__picture_book">
+        <%= "#{pokemon_all.number}. "%>
+        <%= pokemon_all.name %>
+        <% unless pokemon_all.image_url == nil || pokemon_all.image_url.blank? %>
+          <%= image_tag(pokemon_all.image_url, size: "170") %>
+        <% else %>
+          <%= image_tag("体育座りの男.png", size: "170") %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  <div>
