@@ -17,10 +17,10 @@
  .top__logo {
    height: 100px;
    padding-top: 24px;
-   /* background-image: url(https://i.ytimg.com/vi/Ak1YLvwiM68/maxresdefault.jpg); */
    text-align: center;
+   background-color: ghostwhite
  }
 
  .main__box {
-  /* background-image: url(https://i.ytimg.com/vi/Ak1YLvwiM68/maxresdefault.jpg); */
+  background-color: ghostwhite
  }
