@@ -2,53 +2,55 @@
     <div class="top-page">
       <%=render "shared/header"%>
     </div>
-    <% unless user_signed_in? %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% else %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
-    <% end %>
-    <p><%= link_to "トップページに戻る", root_path %></p>
+    <div class="main__box">
+      <% unless user_signed_in? %>
+        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to "ログイン", new_user_session_path %>
+      <% else %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
+      <% end %>
+      <p><%= link_to "トップページに戻る", root_path %></p>
 
-    <div class="container">  
+      <div class="container">  
 
-        <%= link_to "お気に入り", favorite_pokemons_path %>
-        <h1>なまえで検索</h1>
-        <%= form_with url: name_pokemons_path, method: :get, local: true do |f| %>
-          <%= f.text_field :name, autofocus: true , id: "number", placeholder: "例）モクロー"%>
-          <%= f.submit "検索", class: "pokemon__search" %>
-        <% end %>
+          <%= link_to "お気に入り", favorite_pokemons_path %>
+          <h1>なまえで検索</h1>
+          <%= form_with url: name_pokemons_path, method: :get, local: true do |f| %>
+            <%= f.text_field :name, autofocus: true , id: "number", placeholder: "例）モクロー"%>
+            <%= f.submit "検索", class: "pokemon__search" %>
+          <% end %>
 
-        <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
-          <div>タイプで検索<br /></div>
-          <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
-          <%= f.submit "検索" %>
-        <% end %>
+          <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
+            <div>タイプで検索<br /></div>
+            <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
+            <%= f.submit "検索" %>
+          <% end %>
 
-        <%=form_with model: @pokemon, url: sort_pokemons_path, method: :get, local: true do |f|%>
-          <div>並べ替え<br /></div>
-          <%=f.select :keyword, [
-                                ["昇順", "up"],
-                                ["降順", "down"],
-                                ["ランダム", "random"]]%>
-          <%=f.submit "並べ替え"%>
-        <% end %>
-        <div>
-          <% if params[:type_id] != nil %>
-            <%= link_to "ランキング", rank_pokemon_path(params[:type_id]) %>
-          <% else %>
-            <%= link_to "ランキング", rank_pokemon_path("1") %>   
-          <% end %>      
-        </div>
+          <%=form_with model: @pokemon, url: sort_pokemons_path, method: :get, local: true do |f|%>
+            <div>並べ替え<br /></div>
+            <%=f.select :keyword, [
+                                  ["昇順", "up"],
+                                  ["降順", "down"],
+                                  ["ランダム", "random"]]%>
+            <%=f.submit "並べ替え"%>
+          <% end %>
+          <div>
+            <% if params[:type_id] != nil %>
+              <%= link_to "ランキング", rank_pokemon_path(params[:type_id]) %>
+            <% else %>
+              <%= link_to "ランキング", rank_pokemon_path("1") %>   
+            <% end %>      
+          </div>
 
-        <p><%="全 #{@pokemons.count} 匹"%></p>
-        <% @pokemons.each do |pokemons| %>
-            <%= link_to pokemon_path(pokemons.id) do %>
-              <% unless pokemons.image_url == nil || pokemons.image_url.blank? %>
-                <%= image_tag(pokemons.image_url, size: "170") %>
-              <% else %>
-                <%= image_tag("体育座りの男.png", size: "170") %>
+          <p><%="全 #{@pokemons.count} 匹"%></p>
+          <% @pokemons.each do |pokemons| %>
+              <%= link_to pokemon_path(pokemons.id) do %>
+                <% unless pokemons.image_url == nil || pokemons.image_url.blank? %>
+                  <%= image_tag(pokemons.image_url, size: "170") %>
+                <% else %>
+                  <%= image_tag("体育座りの男.png", size: "170") %>
+                <% end %>
               <% end %>
-            <% end %>
-        <% end %>
-     </div>
+          <% end %>
+      </div>
+    </div>
