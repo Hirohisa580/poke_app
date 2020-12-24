@@ -3,61 +3,64 @@
   <div class="top-page">
       <%=render "shared/header"%>
   </div>
-  <h1><%= link_to "ポケモン検索", search_pokemons_path%></h1>
+  <div class="main__box">
 
-  <% if @response_body != nil || @response_two != nil%>
-    <% if @response_body != nil %>
+    <h1><%= link_to "ポケモン検索", search_pokemons_path%></h1>
 
-      <p><%= @response_body["id"] %></p>
-      <%= @response["name"]%>
-
-    <% else %>
-      <h4>名前情報が存在しません</h4>
-    <% end %>
-
-    <%  if @response_two != nil%>
-      <% if @response_two["sprites"]["front_default"] != nil %>
-        <%= image_tag(@response_two["sprites"]["front_default"], size: "200") %>
-      <% else %>
-        <h4>画像情報が存在しません</h4>
-      <% end %>
-      <P><%=" タイプ１： #{@response_two["types"][0]["type"]["name"]} "%></p>
-      <% if @response_two["types"][1] != nil%>
-        <p><%=" タイプ２： #{@response_two["types"][1]["type"]["name"]} "%></p>
-      <% end %>
-
-    <% else %>
-      <h4>詳細情報が存在しません</h4>
-    <% end %>
-
-  <% else %>
-    <h4>存在しないIDです</h4>
-  <% end %>
-
-  <% if  @response_body != nil || @response_two != nil%>
-    <h2>ポケモンゲットだぜ</h2>
-
-    <%= form_with model: @pokemon, url: pokemons_path, method: :post, local: true do |f| %>
+    <% if @response_body != nil || @response_two != nil%>
       <% if @response_body != nil %>
-        <%= f.text_field :number, value: "#{@response_body["id"]}" %>
+
+        <p><%= @response_body["id"] %></p>
+        <%= @response["name"]%>
+
+      <% else %>
+        <h4>名前情報が存在しません</h4>
       <% end %>
-      <% if @response != nil %>
-        <%= f.text_field :name, value: "#{@response["name"]}" %>
-      <% end %>
-      <% if @response_two != nil%>
-        <% if @response_two["types"][0] != nil %>
-          <%= f.text_field :type_one, value: "#{@response_two["types"][0]["type"]["name"]}" %>
-        <% end %>
-        <% if @response_two["types"][1] != nil %>
-          <%= f.text_field :type_two, value: "#{@response_two["types"][1]["type"]["name"]}" %>
-        <% end %>
+
+      <%  if @response_two != nil%>
         <% if @response_two["sprites"]["front_default"] != nil %>
-          <%= f.text_field :image_url, value: "#{@response_two["sprites"]["front_default"]}" %>
+          <%= image_tag(@response_two["sprites"]["front_default"], size: "200") %>
         <% else %>
-          <%= f.text_field :image_url, value: "" %>
+          <h4>画像情報が存在しません</h4>
         <% end %>
+        <P><%=" タイプ１： #{@response_two["types"][0]["type"]["name"]} "%></p>
+        <% if @response_two["types"][1] != nil%>
+          <p><%=" タイプ２： #{@response_two["types"][1]["type"]["name"]} "%></p>
+        <% end %>
+
+      <% else %>
+        <h4>詳細情報が存在しません</h4>
       <% end %>
-      <p><%= f.submit "マスターボール", id: "ball" %></p>
+
+    <% else %>
+      <h4>存在しないIDです</h4>
     <% end %>
-  <% end %>
+
+    <% if  @response_body != nil || @response_two != nil%>
+      <h2>ポケモンゲットだぜ</h2>
+
+      <%= form_with model: @pokemon, url: pokemons_path, method: :post, local: true do |f| %>
+        <% if @response_body != nil %>
+          <%= f.text_field :number, value: "#{@response_body["id"]}" %>
+        <% end %>
+        <% if @response != nil %>
+          <%= f.text_field :name, value: "#{@response["name"]}" %>
+        <% end %>
+        <% if @response_two != nil%>
+          <% if @response_two["types"][0] != nil %>
+            <%= f.text_field :type_one, value: "#{@response_two["types"][0]["type"]["name"]}" %>
+          <% end %>
+          <% if @response_two["types"][1] != nil %>
+            <%= f.text_field :type_two, value: "#{@response_two["types"][1]["type"]["name"]}" %>
+          <% end %>
+          <% if @response_two["sprites"]["front_default"] != nil %>
+            <%= f.text_field :image_url, value: "#{@response_two["sprites"]["front_default"]}" %>
+          <% else %>
+            <%= f.text_field :image_url, value: "" %>
+          <% end %>
+        <% end %>
+        <p><%= f.submit "マスターボール", id: "ball" %></p>
+      <% end %>
+    <% end %>
+  </div>
       

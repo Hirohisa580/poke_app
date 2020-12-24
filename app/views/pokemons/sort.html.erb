@@ -2,13 +2,7 @@
    <div class="top-page">
       <%=render "shared/header"%>
   </div>   
-    <% unless user_signed_in? %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% else %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
-    <% end %>
-    <p><%= link_to "トップページに戻る", root_path %></p>
+  <div class="main__box">
 
     <div class="container">  
 
@@ -55,3 +49,4 @@
             <% end %>
         <% end %>
      </div>
+    </div>

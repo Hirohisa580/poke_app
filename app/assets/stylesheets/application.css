@@ -18,9 +18,24 @@
    height: 100px;
    padding-top: 24px;
    text-align: center;
-   background-color: ghostwhite
+   background-color: ghostwhite;
+  /* background-image: url(https://ferret.akamaized.net/images/59e76165fafbd876ce00035c/original.jpg?1508335973); */
+
  }
 
+ .header__main {
+  background-color: ghostwhite;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  /* background-image: url(https://ferret.akamaized.net/images/59e76165fafbd876ce00035c/original.jpg?1508335973); */
+
+ }
+
+ .container {
+  text-align: center;
+}
+
  .main__box {
-  background-color: ghostwhite
+  background-color: ghostwhite;
+  height: 100vh;
  }

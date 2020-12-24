@@ -3,8 +3,9 @@
   <div class="top-page">
       <%=render "shared/header"%>
   </div>
-  <p><%= link_to "トップページに戻る", root_path %></p>   
-  <div class="container">  
+  <div class="main__box">
+
+    <div class="container">  
 
       <h1>ランキング</h1>
       <p>（同票はナンバー順）</p>
@@ -23,4 +24,5 @@
         <h1>『投票されたポケモンがいません』</h1>
       <% end %>
       <%= link_to '戻る', 'javascript:history.back()'%>   
+    </div>
   </div>

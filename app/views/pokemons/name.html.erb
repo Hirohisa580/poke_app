@@ -2,35 +2,30 @@
     <div class="top-page">
         <%=render "shared/header"%>
     </div>
-    <% unless user_signed_in? %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% else %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
-    <% end %>
-    <p><%= link_to "トップページに戻る", root_path %></p>
+    <div class="main__box">
 
-    <div class="container">  
+      <div class="container">  
 
-        <%= link_to "お気に入り", favorite_pokemons_path %>
-        <h1>なまえで検索</h1>
-        <%= form_with url: name_pokemons_path, method: :get, local: true do |f| %>
-          <%= f.text_field :name, autofocus: true , id: "number", placeholder: "例）モクロー"%>
-          <%= f.submit "検索", class: "pokemon__search" %>
-        <% end %>
-
-        <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
-          <div>タイプで検索<br /></div>
-          <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
-          <%= f.submit "検索" %>
-        <% end %>
-
-        <%= link_to pokemon_path(@pokemon.id) do %>
-          <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
-            <%= image_tag(@pokemon.image_url, size: "200") %>
-          <% else %>
-            <%= image_tag("体育座りの男.png", size: "200") %>
+          <%= link_to "お気に入り", favorite_pokemons_path %>
+          <h1>なまえで検索</h1>
+          <%= form_with url: name_pokemons_path, method: :get, local: true do |f| %>
+            <%= f.text_field :name, autofocus: true , id: "number", placeholder: "例）モクロー"%>
+            <%= f.submit "検索", class: "pokemon__search" %>
           <% end %>
-        <% end %>
-        <p><%= link_to '戻る', 'javascript:history.back()'%></p>
-     </div>
+
+          <%= form_with url: type_pokemons_path, method: :get, local: true do |f| %>
+            <div>タイプで検索<br /></div>
+            <%= f.collection_select(:type_id, Type.all, :id, :name, {}, class: "") %>
+            <%= f.submit "検索" %>
+          <% end %>
+
+          <%= link_to pokemon_path(@pokemon.id) do %>
+            <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
+              <%= image_tag(@pokemon.image_url, size: "200") %>
+            <% else %>
+              <%= image_tag("体育座りの男.png", size: "200") %>
+            <% end %>
+          <% end %>
+          <p><%= link_to '戻る', 'javascript:history.back()'%></p>
+      </div>
+    </div>

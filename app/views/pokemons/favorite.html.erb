@@ -3,16 +3,17 @@
     <div class="top-page">
       <%=render "shared/header"%>
     </div>
-    <%= link_to "トップページに戻る", root_path %> 
-    <div class="container">  
-        <% @favorite_pokemon.each do |pokemon| %>
-            <%= link_to pokemon_path(pokemon.id) do %>
-              <% unless pokemon.image_url == nil || pokemon.image_url.blank? %>
-                <%= image_tag(pokemon.image_url, size: "170") %>
-              <% else %>
-                <%= image_tag("体育座りの男.png", size: "170") %>
+    <div class="main__box">
+      <div class="container">  
+          <% @favorite_pokemon.each do |pokemon| %>
+              <%= link_to pokemon_path(pokemon.id) do %>
+                <% unless pokemon.image_url == nil || pokemon.image_url.blank? %>
+                  <%= image_tag(pokemon.image_url, size: "170") %>
+                <% else %>
+                  <%= image_tag("体育座りの男.png", size: "170") %>
+                <% end %>
               <% end %>
-            <% end %>
-        <% end %>
-        <p><%= link_to '戻る', 'javascript:history.back()'%></p>
+          <% end %>
+          <p><%= link_to '戻る', 'javascript:history.back()'%></p>
+      </div>
     </div>

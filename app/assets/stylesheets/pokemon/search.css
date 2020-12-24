@@ -7,11 +7,6 @@
   .pokemon__search_get {
     text-align: center;
   }
-  
-  .container {
-    /* background-color: orange; */
-    text-align: center;
-  }
 
   .pokemon__picture_book {
     display: inline-block;

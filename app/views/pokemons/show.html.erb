@@ -2,41 +2,45 @@
     <div class="top-page">
       <%=render "shared/header"%>
     </div>
-    <%= link_to "トップページに戻る", root_path %>
-    <div class="pokemon__show">
-      <div class="show__name">
-        <%= "#{@pokemon.number}. "%>
-        <%= @pokemon.name %>
-      </div>
-      <div id="showImage">
-        <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
-          <%= image_tag(@pokemon.image_url, size: "300") %>
-        <% else %>
-          <%= image_tag("体育座りの男.png", size: "300") %>
-        <% end %>
-      </div>
-     
-      <P id="type_one"><%="タイプ1: #{@pokemon.type_one}"%></p>
-      <% if @pokemon.type_two != nil%>
-        <p id="type_two"><%="タイプ2: #{@pokemon.type_two}"%></p>
-      <% end %>
+    
+    <div class="main__box">
+      <div class="container">
+        <div class="pokemon__show">
+          <div class="show__name">
+            <%= "#{@pokemon.number}. "%>
+            <%= @pokemon.name %>
+          </div>
+          <div id="showImage">
+            <% unless @pokemon.image_url == nil || @pokemon.image_url.blank? %>
+              <%= image_tag(@pokemon.image_url, size: "300") %>
+            <% else %>
+              <%= image_tag("体育座りの男.png", size: "300") %>
+            <% end %>
+          </div>
+        
+          <P id="type_one"><%="タイプ1: #{@pokemon.type_one}"%></p>
+          <% if @pokemon.type_two != nil%>
+            <p id="type_two"><%="タイプ2: #{@pokemon.type_two}"%></p>
+          <% end %>
 
-      <% unless (10 - current_user.favorites.count) <= 0%>    
-        <% if current_user.already_favorited?(@pokemon) %>
-          <%= link_to "投票を取り消す", pokemon_favorite_path(@pokemon), method: :delete %>
-        <% else %>
-          <%= link_to "投票する", pokemon_favorites_path(@pokemon), method: :post %>
-        <% end %>
-        <%= @pokemon.favorites.count %>
-      <% else %>
-        <% if current_user.already_favorited?(@pokemon) %>
-          <%= link_to "投票を取り消す", pokemon_favorite_path(@pokemon), method: :delete %>
-        <% end %>
-        <%= @pokemon.favorites.count %>
-      <% end %>
-      <p><%= "残り投票数は #{10 - current_user.favorites.count} 回です" %></p>
+          <% unless (10 - current_user.favorites.count) <= 0%>    
+            <% if current_user.already_favorited?(@pokemon) %>
+              <%= link_to "投票を取り消す", pokemon_favorite_path(@pokemon), method: :delete %>
+            <% else %>
+              <%= link_to "投票する", pokemon_favorites_path(@pokemon), method: :post %>
+            <% end %>
+            <%= @pokemon.favorites.count %>
+          <% else %>
+            <% if current_user.already_favorited?(@pokemon) %>
+              <%= link_to "投票を取り消す", pokemon_favorite_path(@pokemon), method: :delete %>
+            <% end %>
+            <%= @pokemon.favorites.count %>
+          <% end %>
+          <p><%= "残り投票数は #{10 - current_user.favorites.count} 回です" %></p>
 
-      <p><%= link_to "お気に入り", favorite_pokemons_path %></p>
-      <%= link_to '戻る', 'javascript:history.back()'%>
+          <p><%= link_to "お気に入り", favorite_pokemons_path %></p>
+          <%= link_to '戻る', 'javascript:history.back()'%>
+        </div>
+      </div>
     </div>
 
